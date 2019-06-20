@@ -177,6 +177,55 @@ Go to `discover` and select our index. Now we get all `Documents` in our `Index`
 ![Elasticsearch Add Parsed](/readme_files/parsedapp.png)
 
 
+Same output in json:
+
+```json
+{
+  "_index": "pbs-app-2019.06.20",
+  "_type": "fluentd",
+  "_id": "Pq1sdWsBIUk8DCg7Kilo",
+  "_version": 1,
+  "_score": null,
+  "_source": {
+    "level": "DISASTER",
+    "user": "Stefany Frizzell",
+    "message": "API not availiable",
+    "docker": {
+      "container_id": "41c0fadf4d0bd43ebb443316a82a838d5e543e4d53da94d2687cd501748fc514"
+    },
+    "kubernetes": {
+      "container_name": "logs-generator",
+      "namespace_name": "logs-generator-app",
+      "pod_name": "logs-generator-d489555f9-jwswb",
+      "container_image": "wacken/logs-generator:beta-2",
+      "container_image_id": "docker-pullable://wacken/logs-generator@sha256:a9eac59fac4d93e8273cdf16d05b1b90d3a7d8966bcd4b2c7967644e22827394",
+      "pod_id": "8dcdca6c-934a-11e9-b7d8-96000028f204",
+      "labels": {
+        "app": "logs",
+        "pod-template-hash": "d489555f9",
+        "version": "beta"
+      },
+      "host": "kc-fluentd-app-worker4",
+      "master_url": "https://10.43.0.1:443/api",
+      "namespace_id": "f61ff9e8-9346-11e9-b7d8-96000028f204",
+      "namespace_labels": {
+        "field_cattle_io/projectId": "p-tnvtx"
+      }
+    },
+    "@timestamp": "2019-06-20T15:05:46.561534572+00:00",
+    "tag": "kubernetes.var.log.containers.logs-generator-d489555f9-jwswb_logs-generator-app_logs-generator-41c0fadf4d0bd43ebb443316a82a838d5e543e4d53da94d2687cd501748fc514.log"
+  },
+  "fields": {
+    "@timestamp": [
+      "2019-06-20T15:05:46.561Z"
+    ]
+  },
+  "sort": [
+    1561043146561
+  ]
+}
+```
+
 
 For NGINX use file `fluentd-cm-nginx.yaml` same as `application` but chaged only regexp in `filter` on
 
