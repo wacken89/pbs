@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: flux-metrics
+  namespace: tools-flux
+  labels:
+    app: flux-metrics
+    release: monitoring
+spec:
+  selector:
+    app: flux
+    release: flux
+  ports:
+  - name: metrics
+    port: 3030
+    targetPort: 3030
+  type: ClusterIP
