@@ -3,7 +3,7 @@ kind: ServiceMonitor
 metadata:
   name: flux-metrics
   labels:
-    release: prometheus-operator
+    prometheus: active
     app: flux-metrics
 spec:
   endpoints:
@@ -14,4 +14,4 @@ spec:
   selector:
     matchLabels:
       app: flux-metrics
-      release: monitoring
+      prometheus: active
