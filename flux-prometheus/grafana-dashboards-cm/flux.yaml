@@ -12,36 +12,6 @@ metadata:
 data:
   flux.json: |-
     {
-      "__inputs": [
-        {
-          "name": "DS_PROMETHEUS",
-          "label": "Prometheus",
-          "description": "",
-          "type": "datasource",
-          "pluginId": "prometheus",
-          "pluginName": "Prometheus"
-        }
-      ],
-      "__requires": [
-        {
-          "type": "grafana",
-          "id": "grafana",
-          "name": "Grafana",
-          "version": "6.0.2"
-        },
-        {
-          "type": "panel",
-          "id": "graph",
-          "name": "Graph",
-          "version": "5.0.0"
-        },
-        {
-          "type": "datasource",
-          "id": "prometheus",
-          "name": "Prometheus",
-          "version": "5.0.0"
-        }
-      ],
       "annotations": {
         "list": [
           {
@@ -55,11 +25,12 @@ data:
           }
         ]
       },
+      "description": "Dashboard for Weave Flux",
       "editable": true,
-      "gnetId": null,
+      "gnetId": 10475,
       "graphTooltip": 0,
-      "id": null,
-      "iteration": 1562067558481,
+      "id": 13,
+      "iteration": 1562790885863,
       "links": [],
       "panels": [
         {
@@ -98,7 +69,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(flux_cache_request_duration_seconds_sum{job=\"$instance\"}[5m])) by (method)",
+              "expr": "sum(rate(flux_cache_request_duration_seconds_sum{job=\"flux-metrics\"}[5m])) by (method)",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -183,7 +154,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(flux_client_fetch_duration_seconds_sum{job=\"$instance\"}[5m])) by (kind)",
+              "expr": "sum(rate(flux_client_fetch_duration_seconds_sum{job=\"flux-metrics\"}[5m])) by (kind)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{`{{kind}}`}}",
@@ -267,7 +238,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "flux_daemon_job_duration_seconds_sum{job=\"$instance\"}",
+              "expr": "flux_daemon_job_duration_seconds_sum{job=\"flux-metrics\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Total",
@@ -351,7 +322,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "flux_daemon_queue_duration_seconds_sum{job=~\"$instance\"}",
+              "expr": "flux_daemon_queue_duration_seconds_sum{job=~\"flux-metrics\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Total",
@@ -519,7 +490,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(flux_daemon_sync_duration_seconds_sum{job=\"$instance\"}[5m])) by (success)",
+              "expr": "sum(rate(flux_daemon_sync_duration_seconds_sum{job=\"flux-metrics\"}[5m])) by (success)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "success: {{`{{success}}`}}",
@@ -603,7 +574,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(flux_registry_fetch_duration_seconds_sum{job=\"$instance\"}[5m]))",
+              "expr": "sum(rate(flux_registry_fetch_duration_seconds_sum{job=\"flux-metrics\"}[5m]))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Registry fetch",
@@ -687,7 +658,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(flux_fluxd_connection_duration_seconds{job=\"$instance\"}[5m]))",
+              "expr": "sum(rate(flux_fluxd_connection_duration_seconds{job=\"flux-metrics\"}[5m]))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Connection duration",
@@ -743,26 +714,20 @@ data:
       "templating": {
         "list": [
           {
-            "allValue": null,
-            "current": {},
-            "datasource": "${DS_PROMETHEUS}",
-            "definition": "label_values(flux_daemon_job_duration_seconds_bucket, job)",
+            "current": {
+              "tags": [],
+              "text": "Prometheus",
+              "value": "Prometheus"
+            },
             "hide": 0,
-            "includeAll": false,
-            "label": "Instance",
-            "multi": true,
-            "name": "instance",
+            "label": null,
+            "name": "datasource",
             "options": [],
-            "query": "label_values(flux_daemon_job_duration_seconds_bucket, job)",
+            "query": "prometheus",
             "refresh": 1,
             "regex": "",
             "skipUrlSync": false,
-            "sort": 0,
-            "tagValuesQuery": "",
-            "tags": [],
-            "tagsQuery": "",
-            "type": "query",
-            "useTags": false
+            "type": "datasource"
           }
         ]
       },
@@ -798,6 +763,6 @@ data:
       "timezone": "",
       "title": "Weave Flux",
       "uid": "vJMuruVWk",
-      "version": 10
+      "version": 4
     }
 {{- end }}
